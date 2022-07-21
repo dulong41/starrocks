@@ -10,8 +10,6 @@ import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-
-
 /**
  * Modify from mockit.internal.util.ConstructorReflection JMockit v1.13
  * Util class to invoke constructor of specified class.
