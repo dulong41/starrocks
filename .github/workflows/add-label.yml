@@ -1,0 +1,17 @@
+name: Labels
+
+on:
+  pull_request_target:
+#    types: - opened
+    paths: 
+      - 'conf/**'
+
+jobs:
+  add-pr-label:
+    runs-on: ubuntu-latest
+    steps:  
+      - name: add document label
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: documentation

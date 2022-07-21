@@ -14,10 +14,20 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
+        
       - name: "Format it!"
-        uses: DoozyX/clang-format-lint-action@v0.13
+        uses: DoozyX/clang-format-lint-action@master
         id: be_clang_format
         with:
           source: 'be/src be/test'
-          clangFormatVersion: 13
+          clangFormatVersion: 14
           inplace: False
+          
+#          inplace: True
+#      - uses: EndBug/add-and-commit@v4
+#        with:
+#          committer_name: dulong41
+#          committer_email: dulong@starrrocks.com
+#          message: 'Committing clang-format changes'
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
