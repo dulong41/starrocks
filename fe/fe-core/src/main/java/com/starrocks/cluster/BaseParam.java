@@ -74,6 +74,10 @@ public class BaseParam implements Writable {
     public void addFloatParam(float value) {
         this.floatParams.add(value);
     }
+    
+    public void addFloatParam2(float value) {
+        this.floatParams.add(value);
+    }
 
     @Override
     public void write(DataOutput out) throws IOException {
