@@ -98,6 +98,8 @@ public class BaseParam implements Writable {
 
     }
 
+
+
     public void readFields(DataInput in) throws IOException {
         int count = in.readInt();
         while (count-- > 0) {
