@@ -65,10 +65,9 @@ public final class ConstructorReflection {
     private static <T> T newInstance(Class<T> aClass) {
         return (T) newInstance((Class) aClass, ParameterReflection.NO_PARAMETERS);
     }
-    
-    private static <T> T newInstance2(Class<T> aClass) {
-        return (T) newInstance((Class) aClass, ParameterReflection.NO_PARAMETERS);
-    }
+
+
+
 
     /**
      * invoke the default constructor of {@aClass Class<T>}.
