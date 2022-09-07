@@ -28,3 +28,5 @@ class WebPageHandler;
 // logs and configuration flags
 void add_default_path_handlers(WebPageHandler* web_page_handler, MemTracker* process_mem_tracker);
 } // namespace starrocks
+
+// test
