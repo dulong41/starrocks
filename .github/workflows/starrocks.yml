@@ -9,7 +9,7 @@ env:
    STARROCKS_HOME: $GITHUB_WORKSPACE
 
 jobs:
-   build:
+   build123:
      runs-on: ubuntu-latest
      steps:
      - uses: actions/checkout@v3
