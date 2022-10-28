@@ -3,6 +3,7 @@
 source ~/.bash_profile
 set -eo pipefail
 
+
 PROJECT=`dirname "$0"`
 ROOT=`cd "$PROJECT/.."; pwd`
 
