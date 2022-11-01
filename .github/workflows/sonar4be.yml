@@ -10,16 +10,20 @@ on:
       - 'be/**.cpp'
       - 'be/**.hpp'
       - 'be/**.h'
+  check_run:
+    types: [completed]
 jobs:
   build:
     name: BE Sonar Build
-    runs-on: ubuntu-latest
+    #if: github.event.pull_request.paths && startsWith(github.event.pull_request.paths, 'be/src')
+    runs-on: self-hosted
     env:
       PR_NUMBER: ${{ github.event.number  }}
+      PR_PATH: ${{ github.event.pull_request.paths }}
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - run: |
+          echo $PR_PATH
+          
       - name: set up
         run: |
           sudo rm -rf ../starrocks/*
