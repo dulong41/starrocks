@@ -25,10 +25,9 @@ jobs:
         id: changes
         with:
           filters: |
-            src:
-              - 'be/**.cpp'
-              - 'be/**.hpp'
-              - 'be/**.h'
+            - 'be/**.cpp'
+            - 'be/**.hpp'
+            - 'be/**.h'
 
       # run only if some file in 'src' folder was changed
       # - if: steps.changes.outputs.src == 'true'
