@@ -1,17 +1,18 @@
 name: BE Build
 on:
-#   push:
-#     branches:
-#       - main
-#       - 'branch*'
-#   pull_request:
-#     types: [opened, synchronize, reopened]
-#     paths:
-#       - 'be/**.cpp'
-#       - 'be/**.hpp'
-#       - 'be/**.h'
+  push:
+    branches:
+      - main
+      - 'branch*'
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'be/**.cpp'
+      - 'be/**.hpp'
+      - 'be/**.h'
   check_run:
     types: [completed]
+    conclusion: [success]
     name: [Trigger-Admit-Test]
 jobs:
   build:
@@ -20,7 +21,13 @@ jobs:
     runs-on: self-hosted
     env:
       PR_NUMBER: ${{ github.event.number  }}
+      NAME: ${{ github.check_run.name }}
+      CONCLUSION: ${{ github.check_run.conclusion }}
     steps:
+      - run: |
+          echo $NAME
+          echo $CONCLUSION
+          
       - uses: dorny/paths-filter@v2
         id: changes
         with:
