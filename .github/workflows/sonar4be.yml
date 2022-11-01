@@ -1,18 +1,18 @@
 name: BE Build
 on:
-  push:
-    branches:
-      - main
-      - 'branch*'
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - 'be/**.cpp'
-      - 'be/**.hpp'
-      - 'be/**.h'
+#   push:
+#     branches:
+#       - main
+#       - 'branch*'
+#   pull_request:
+#     types: [opened, synchronize, reopened]
+#     paths:
+#       - 'be/**.cpp'
+#       - 'be/**.hpp'
+#       - 'be/**.h'
   check_run:
     types: [completed]
-    name: [name]
+    name: [Trigger-Admit-Test]
 jobs:
   build:
     name: BE Sonar Build
