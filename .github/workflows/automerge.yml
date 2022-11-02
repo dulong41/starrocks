@@ -15,13 +15,13 @@ jobs:
           pull-request-number: ${{ github.event.pull_request.number }}
           merge-method: rebase
 
-  remover:
-    runs-on: ubuntu-latest
-    if: contains( github.event.pull_request.labels.*.name, 'be-build')
-    steps:
-      - run: sleep 5
+#   remover:
+#     runs-on: ubuntu-latest
+#     if: contains( github.event.pull_request.labels.*.name, 'be-build')
+#     steps:
+#       - run: sleep 5
  
-      - uses: actions-ecosystem/action-remove-labels@v1
-        with:
-          labels: |
-            be-build
+#       - uses: actions-ecosystem/action-remove-labels@v1
+#         with:
+#           labels: |
+#             be-build
