@@ -12,8 +12,6 @@ on:
       - 'be/**.h'
   check_run:
     types: [completed]
-    conclusion: [success]
-    name: [Trigger-Admit-Test]
 jobs:
   build:
     name: BE Sonar Build
