@@ -23,11 +23,6 @@ jobs:
     steps:
       - run: |
           echo "$GITHUB_CONTEXT"
-          
-      - uses: actions-ecosystem/action-remove-labels@v1
-        with:
-          labels: |
-            be-build
             
       - uses: dorny/paths-filter@v2
         id: changes
