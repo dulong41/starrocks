@@ -6,11 +6,22 @@ on:
 jobs:
   automerge:
     runs-on: ubuntu-latest
+    if: contains( github.event.pull_request.labels.*.name, 'automerge')
     steps:
       - name: enable automerge
-        if: contains( github.event.pull_request.labels.*.name, 'automerge')
         uses: peter-evans/enable-pull-request-automerge@v2
         with:
           token: ${{ secrets.PAT }}
           pull-request-number: ${{ github.event.pull_request.number }}
           merge-method: rebase
+
+  remover:
+    runs-on: ubuntu-latest
+    if: contains( github.event.pull_request.labels.*.name, 'be-build')
+    steps:
+      - run: sleep 5
+ 
+      - uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          labels: |
+            be-build
