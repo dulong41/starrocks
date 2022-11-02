@@ -5,11 +5,12 @@ on:
       - main
       - 'branch*'
   pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - 'be/**.cpp'
-      - 'be/**.hpp'
-      - 'be/**.h'
+    types: [labeled]
+#     types: [opened, synchronize, reopened]
+#     paths:
+#       - 'be/**.cpp'
+#       - 'be/**.hpp'
+#       - 'be/**.h'
 
 jobs:
   build:
