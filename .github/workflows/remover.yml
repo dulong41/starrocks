@@ -1,0 +1,22 @@
+name: Remover
+on:
+  workflow_run:
+    workflows: ["BE Build"]
+    types: ['requested']
+permissions:
+  # All other permissions are set to none
+  checks: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  build:
+    name: Remove BE Build Label
+    runs-on: ubuntu-latest
+    steps:
+      - name: label remover
+        if: contains(github.event.pull_request.labels.*.name, 'be-build')
+        uses: actions-ecosystem/action-remove-labels@v1
+          with:
+            labels: |
+              be-build
