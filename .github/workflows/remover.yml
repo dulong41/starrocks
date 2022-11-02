@@ -17,6 +17,6 @@ jobs:
       - name: label remover
         if: contains(github.event.pull_request.labels.*.name, 'be-build')
         uses: actions-ecosystem/action-remove-labels@v1
-          with:
-            labels: |
-              be-build
+        with:
+          labels: |
+            be-build
