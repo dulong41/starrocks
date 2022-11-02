@@ -12,6 +12,9 @@ jobs:
       id: review
       with:
         # List of packages to install
-        apt_packages: liblapack-dev
+        # apt_packages: liblapack-dev
         # CMake command to run in order to generate compile_commands.json
         # cmake_command: cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
+        build_dir: be/build_Release
+        base_dir: be
+        clang_tidy_version: 10
