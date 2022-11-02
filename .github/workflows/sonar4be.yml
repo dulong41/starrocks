@@ -10,8 +10,7 @@ on:
       - 'be/**.cpp'
       - 'be/**.hpp'
       - 'be/**.h'
-  check_run:
-    types: [completed]
+
 jobs:
   build:
     name: BE Sonar Build
@@ -24,6 +23,12 @@ jobs:
       - run: |
           echo "$GITHUB_CONTEXT"
           
+      - uses: actions-ecosystem/action-remove-labels@v1
+        if: ${{ startsWith(github.event.comment.body, '/remove-labels') }}
+        with:
+          labels: |
+            be-build
+            
       - uses: dorny/paths-filter@v2
         id: changes
         with:
