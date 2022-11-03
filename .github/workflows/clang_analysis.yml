@@ -3,11 +3,19 @@ on: [pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v3
 
+    - name: get build
+      run: |
+        rm -rf be/src
+        time scp jenkins@ci01:~/userContent/be-build-12072.tar.gz .
+        tar xzf be-build-12072.tar.gz
+        workdir=$(pwd)
+        echo $workdir
+        
     - uses: ZedThree/clang-tidy-review@v0.10.0
       id: review
       with:
