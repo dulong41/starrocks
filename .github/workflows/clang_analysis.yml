@@ -20,9 +20,7 @@ jobs:
         workdir=$(pwd)
         echo $workdir
         
-        scl enable llvm-toolset-7 'clang -v'
-        scl enable llvm-toolset-7 'lldb -v'
-        scl enable llvm-toolset-7 bash
+
         cp ~/clang-tidy-diff.py .
         
     - name: Create results directory
@@ -30,6 +28,9 @@ jobs:
         mkdir clang-tidy-result
     - name: Analyze
       run: |
+        scl enable llvm-toolset-7 'clang -v'
+        scl enable llvm-toolset-7 'lldb -v'
+        scl enable llvm-toolset-7 bash
         git diff -U0 HEAD^ | python clang-tidy-diff.py -p1 -path be/build_Release -export-fixes clang-tidy-result/fixes.yml
         
     - name: Run clang-tidy-pr-comments action
