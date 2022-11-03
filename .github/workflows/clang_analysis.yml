@@ -19,6 +19,10 @@ jobs:
         workdir=$(pwd)
         echo $workdir
         
+        scl enable llvm-toolset-7 'clang -v'
+        scl enable llvm-toolset-7 'lldb -v'
+        scl enable llvm-toolset-7 bash
+        
     - uses: ZedThree/clang-tidy-review@v0.10.0
       id: review
       with:
