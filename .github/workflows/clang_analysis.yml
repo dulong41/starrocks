@@ -8,20 +8,20 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-#    - run: sh build.sh --clean --be
+    - run: sh build.sh --clean --be
 
-    - name: get build
-      run: |
-        time scp jenkins@ci01:~/userContent/be-build-12072.tar.gz .
-        mkdir temp
-        tar xzf be-build-12072.tar.gz -C temp
-        cp -r temp/be/build_Release be/
-        workdir=$(pwd)
-        echo $workdir
+#     - name: get build
+#       run: |
+#         time scp jenkins@ci01:~/userContent/be-build-12072.tar.gz .
+#         mkdir temp
+#         tar xzf be-build-12072.tar.gz -C temp
+#         cp -r temp/be/build_Release be/
+#         workdir=$(pwd)
+#         echo $workdir
         
-        scl enable llvm-toolset-7 'clang -v'
-        scl enable llvm-toolset-7 'lldb -v'
-        scl enable llvm-toolset-7 bash
+#         scl enable llvm-toolset-7 'clang -v'
+#         scl enable llvm-toolset-7 'lldb -v'
+#         scl enable llvm-toolset-7 bash
         
     - uses: ZedThree/clang-tidy-review@v0.10.0
       id: review
