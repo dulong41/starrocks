@@ -7,14 +7,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: sh build.sh --clean --be
-#     - name: get build
-#       run: |
-#         rm -rf be/src
-#         time scp jenkins@ci01:~/userContent/be-build-12072.tar.gz .
-#         tar xzf be-build-12072.tar.gz
-#         workdir=$(pwd)
-#         echo $workdir
+    
+#    - run: sh build.sh --clean --be
+
+    - name: get build
+      run: |
+        time scp jenkins@ci01:~/userContent/be-build-12072.tar.gz .
+        mkdir temp
+        tar xzf be-build-12072.tar.gz -C temp
+        cp -r temp/be/build_Release be/
+        workdir=$(pwd)
+        echo $workdir
         
     - uses: ZedThree/clang-tidy-review@v0.10.0
       id: review
