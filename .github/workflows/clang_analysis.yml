@@ -31,7 +31,7 @@ jobs:
         scl enable llvm-toolset-7 'clang -v'
         scl enable llvm-toolset-7 'lldb -v'
         scl enable llvm-toolset-7 bash
-        git diff -U0 HEAD^ | python clang-tidy-diff.py -p1 -path be/build_Release -export-fixes clang-tidy-result/fixes.yml
+        git diff -U0 HEAD^ | python clang-tidy-diff.py -p1 -path be/build_Release/compile_commands.json -export-fixes clang-tidy-result/fixes.yml
         
     - name: Run clang-tidy-pr-comments action
       uses: platisd/clang-tidy-pr-comments@master
