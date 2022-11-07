@@ -38,7 +38,7 @@ jobs:
     - name: markdownlint-cli
       uses: nosborn/github-action-markdown-cli@v3.2.0
       with:
-        files: docs #${{ steps.diff.outputs.files }}
+        files: ${{ steps.diff.outputs.files }}
         
 #     - uses: articulate/actions-markdownlint@v1.1.0
 #       with:
