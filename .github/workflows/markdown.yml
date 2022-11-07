@@ -22,7 +22,7 @@ jobs:
       uses: tj-actions/changed-files@v34
     - name: git diff
       id: diff
-      run : git diff --name-only main | grep -E "(.md$)"
+      run : echo "files=$(git diff --name-only main | grep -E \"(.md$)\")" >> $GITHUB_OUTPUT
       
 #     - name: List all changed files
 #       run: |
@@ -38,7 +38,7 @@ jobs:
     - name: markdownlint-cli
       uses: nosborn/github-action-markdown-cli@v3.2.0
       with:
-        files: ${{ steps.changed-files.outputs.all_changed_files }}
+        files: ${{ steps.diff.outputs.files }}
         
 #     - uses: articulate/actions-markdownlint@v1.1.0
 #       with:
