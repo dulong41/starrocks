@@ -14,7 +14,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0
+        fetch-depth: 2
 
       # Example 1
     - name: Get changed files
@@ -22,7 +22,7 @@ jobs:
       uses: tj-actions/changed-files@v34
     - name: git diff
       id: diff
-      run : echo "files=$(git diff --name-only main | grep -E '(.md$)')" >> $GITHUB_OUTPUT
+      run : echo "files=$(git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }} | grep -E '(.md$)')" >> $GITHUB_OUTPUT
       
 #     - name: List all changed files
 #       run: |
