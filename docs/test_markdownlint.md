@@ -6,7 +6,6 @@ Broker Load runs in asynchronous loading mode. After you submit a load job, Star
 
 Broker Load supports loading one or more data files at a time and ensures the transactional atomicity of each load job that is run to load multiple data files. Atomicity means that the loading of multiple data files in one load job must all succeed or fail. It never happens that the loading of some data files succeeds while the loading of the other files fails.
 
-
 Broker Load also supports data transformation at data loading. For more information, see [Transform data at loading](../loading/Etl_in_loading.md).
 
 ## Background information
