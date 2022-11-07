@@ -17,4 +17,4 @@ jobs:
           fetch-depth: 0 
           
     - name: Run mdl
-      uses: actionshub/markdownlint@main
+      uses: actionshub/markdownlint@2.0.2
