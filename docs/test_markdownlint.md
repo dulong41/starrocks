@@ -10,6 +10,7 @@ Broker Load also supports data transformation at data loading. For more informat
 
 ## Background information
 
+
 Broker Load requires a broker to set up a connection between your StarRocks cluster and your storage system. A broker is an independent, stateless service that is integrated with a file-system interface. With a broker, StarRocks can access and read data files that are stored in your storage system, and can use its own computing resources to pre-process and load the data of these data files.
 
 ## Supported data file formats
