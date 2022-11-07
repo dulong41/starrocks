@@ -16,7 +16,6 @@ Broker Load requires a broker to set up a connection between your StarRocks clus
 
 Broker Load supports the following data file formats:
 
-
 - CSV
 
 - Parquet
