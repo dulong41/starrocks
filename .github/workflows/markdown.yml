@@ -26,7 +26,7 @@ jobs:
 #       with:
 #         files: docs
         
-    - uses: articulate/actions-markdownlint@v1
+    - uses: articulate/actions-markdownlint@v1.1.0
       with:
         config: ".github/markdown-lint.json"
         files: 'docs/**/*.md'
