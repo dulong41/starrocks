@@ -16,10 +16,10 @@ jobs:
       with:
         fetch-depth: 0
 
-      # Example 1
-    - name: Get changed files
-      id: changed-files
-      uses: tj-actions/changed-files@v34
+#       # Example 1
+#     - name: Get changed files
+#       id: changed-files
+#       uses: tj-actions/changed-files@v34
     - name: git diff
       id: diff
       run : echo "files=$(git diff ${{github.base_ref}} ${{github.head_ref}} --name-only -- '*.md')" >> $GITHUB_OUTPUT
