@@ -22,8 +22,9 @@ jobs:
       uses: tj-actions/changed-files@v34
     - name: git diff
       id: diff
-      run : echo "files=$(git diff --name-only | grep -E '(.md$)')" >> $GITHUB_OUTPUT
+      run : echo "files=$(git diff ${{github.base_ref}} ${{github.head_ref}} --name-only -- '*.md')" >> $GITHUB_OUTPUT
       
+# echo "files=$(git diff --name-only | grep -E '(.md$)')" >> $GITHUB_OUTPUT
 #     - name: List all changed files
 #       run: |
 #         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
