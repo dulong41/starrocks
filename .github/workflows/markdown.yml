@@ -16,7 +16,12 @@ jobs:
       with:
         fetch-depth: 0 
           
-    - name: Run mdl
-      uses: actionshub/markdownlint@2.0.2
+#     - name: Run mdl
+#       uses: actionshub/markdownlint@2.0.2
+#       with:
+#         path: docs
+
+    - name: markdownlint-cli
+      uses: nosborn/github-action-markdown-cli@v3.2.0
       with:
-        path: docs
+        files: .
