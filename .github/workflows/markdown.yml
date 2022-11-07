@@ -21,7 +21,14 @@ jobs:
 #       with:
 #         path: docs
 
-    - name: markdownlint-cli
-      uses: nosborn/github-action-markdown-cli@v3.2.0
+#     - name: markdownlint-cli
+#       uses: nosborn/github-action-markdown-cli@v3.2.0
+#       with:
+#         files: docs
+        
+    - uses: articulate/actions-markdownlint@v1
       with:
-        files: docs
+        config: markdownlint-config.json
+        files: 'docs/**/*.md'
+        ignore: node_modules
+        version: 0.28.1
