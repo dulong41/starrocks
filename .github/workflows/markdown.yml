@@ -14,7 +14,9 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
       with:
-          fetch-depth: 0 
+        fetch-depth: 0 
           
     - name: Run mdl
       uses: actionshub/markdownlint@2.0.2
+      with:
+        path: docs
