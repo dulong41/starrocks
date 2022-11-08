@@ -39,7 +39,7 @@ jobs:
         cp -r temp/be/build_Release be/
         workdir=$(pwd)
         echo $workdir
-        sed -i "s|\/root\/starrocks|$workdir|g" be/build-wrapper/compile_commands.json
+        sed -i "s|\/root\/starrocks|$workdir|g" be/build_Release/compile_commands.json
              
 #     - name: Create results directory
 #       run: |
