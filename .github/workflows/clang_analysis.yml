@@ -20,11 +20,11 @@ jobs:
       id: review
       with:
         # List of packages to install
-        apt_packages: clang-format
+        apt_packages: clang-format-10
         # CMake command to run in order to generate compile_commands.json
         # cmake_command: cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
         build_dir: be
-        clang_tidy_version: 12
+        #clang_tidy_version: 12
       
       
       
