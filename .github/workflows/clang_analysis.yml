@@ -3,42 +3,42 @@ on: [pull_request_target]
 
 jobs:
   build:
-#     runs-on: self-hosted
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+#    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 2
     
-    - run: |
-        cd be
-        wget http://39.101.206.100:8090/userContent/compile_commands.json
-        cd ..
+#     - run: |
+#         cd be
+#         wget http://39.101.206.100:8090/userContent/compile_commands.json
+#         cd ..
         
-    - uses: ZedThree/clang-tidy-review@v0.10.1
-      id: review
-      with:
-        # List of packages to install
-        # apt_packages: clang-format-10
-        # CMake command to run in order to generate compile_commands.json
-        # cmake_command: cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
-        build_dir: be
-        clang_tidy_version: 11
+#     - uses: ZedThree/clang-tidy-review@v0.10.1
+#       id: review
+#       with:
+#         # List of packages to install
+#         # apt_packages: clang-format-10
+#         # CMake command to run in order to generate compile_commands.json
+#         # cmake_command: cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
+#         build_dir: be
+#         clang_tidy_version: 11
       
       
       
         
 #    - run: sh build.sh --clean --be
 
-#     - name: get build
-#       run: |
-#         time scp jenkins@ci01:~/userContent/be-build-12072.tar.gz .
-#         mkdir temp
-#         tar xzf be-build-12072.tar.gz -C temp
-#         cp -r temp/be/build_Release be/
-#         workdir=$(pwd)
-#         echo $workdir
+    - name: get build
+      run: |
+        time scp jenkins@ci01:~/userContent/be-build-12072.tar.gz .
+        mkdir temp
+        tar xzf be-build-12072.tar.gz -C temp
+        cp -r temp/be/build_Release be/
+        workdir=$(pwd)
+        echo $workdir
         
 
 #         cp ~/clang-tidy-diff.py .
@@ -68,11 +68,11 @@ jobs:
 #         # pull requests
 #         suggestions_per_comment: 10
         
-#     - uses: ZedThree/clang-tidy-review@v0.10.1
-#       id: review
-#       with:
-#         # List of packages to install
-#         # apt_packages: liblapack-dev
-#         # CMake command to run in order to generate compile_commands.json
-#         # cmake_command: cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
-#         build_dir: be/build_Release
+    - uses: ZedThree/clang-tidy-review@v0.10.1
+      id: review
+      with:
+        # List of packages to install
+        # apt_packages: liblapack-dev
+        # CMake command to run in order to generate compile_commands.json
+        # cmake_command: cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
+        build_dir: be/build_Release
