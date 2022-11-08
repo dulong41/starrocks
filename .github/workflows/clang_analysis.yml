@@ -78,3 +78,4 @@ jobs:
         # cmake_command: cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
         build_dir: be/build_Release
         clang_tidy_version: 14
+        config_file: .
