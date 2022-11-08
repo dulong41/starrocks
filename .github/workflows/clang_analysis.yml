@@ -40,39 +40,39 @@ jobs:
         workdir=$(pwd)
         echo $workdir
              
-    - name: Create results directory
-      run: |
-        cp ~/clang-tidy-diff.py .
-        mkdir clang-tidy-result
+#     - name: Create results directory
+#       run: |
+#         cp ~/clang-tidy-diff.py .
+#         mkdir clang-tidy-result
         
 
-    - name: Analyze
-      run: |
-        scl enable llvm-toolset-7 'clang -v'
-        scl enable llvm-toolset-7 'lldb -v'
-        scl enable llvm-toolset-7 bash
-        git diff -U0 HEAD^ | python clang-tidy-diff.py -p1 -path be/build_Release/compile_commands.json -export-fixes clang-tidy-result/fixes.yml
+#     - name: Analyze
+#       run: |
+#         scl enable llvm-toolset-7 'clang -v'
+#         scl enable llvm-toolset-7 'lldb -v'
+#         scl enable llvm-toolset-7 bash
+#         git diff -U0 HEAD^ | python clang-tidy-diff.py -p1 -path be/build_Release/compile_commands.json -export-fixes clang-tidy-result/fixes.yml
         
-    - name: Run clang-tidy-pr-comments action
-      uses: platisd/clang-tidy-pr-comments@master
-      with:
-        # The GitHub token (or a personal access token)
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        # The path to the clang-tidy fixes generated previously
-        clang_tidy_fixes: clang-tidy-result/fixes.yml
-        # Optionally set to true if you want the Action to request
-        # changes in case warnings are found
-        request_changes: true
-        # Optionally set the number of comments per review
-        # to avoid GitHub API timeouts for heavily loaded
-        # pull requests
-        suggestions_per_comment: 10
-        
-#     - uses: ZedThree/clang-tidy-review@v0.10.1
-#       id: review
+#     - name: Run clang-tidy-pr-comments action
+#       uses: platisd/clang-tidy-pr-comments@master
 #       with:
-#         # List of packages to install
-#         # apt_packages: liblapack-dev
-#         # CMake command to run in order to generate compile_commands.json
-#         # cmake_command: cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
-#         build_dir: be/build_Release
+#         # The GitHub token (or a personal access token)
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+#         # The path to the clang-tidy fixes generated previously
+#         clang_tidy_fixes: clang-tidy-result/fixes.yml
+#         # Optionally set to true if you want the Action to request
+#         # changes in case warnings are found
+#         request_changes: true
+#         # Optionally set the number of comments per review
+#         # to avoid GitHub API timeouts for heavily loaded
+#         # pull requests
+#         suggestions_per_comment: 10
+        
+    - uses: ZedThree/clang-tidy-review@v0.10.1
+      id: review
+      with:
+        # List of packages to install
+        # apt_packages: liblapack-dev
+        # CMake command to run in order to generate compile_commands.json
+        # cmake_command: cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=on
+        build_dir: be/build_Release
