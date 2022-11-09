@@ -5,8 +5,11 @@ jobs:
   build:
     runs-on: self-hosted
 #    runs-on: ubuntu-latest
-
     steps:
+    - name: pre build
+      run: |
+        sudo rm -rf ../starrocks/*
+        
     - uses: actions/checkout@v3
       with:
         fetch-depth: 2
@@ -79,3 +82,7 @@ jobs:
         build_dir: be/build_Release
 #         clang_tidy_version: 14
 #         config_file: .clang-tidy
+
+    - name: post build
+      run: |
+         sudo rm -rf ../starrocks/*
