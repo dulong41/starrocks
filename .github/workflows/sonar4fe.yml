@@ -52,7 +52,7 @@ jobs:
           workdir=$(pwd)
           echo $workdir
           mkdir -p fe/fe-core/target
-          cp temp/home/disk2/jenkins/workspace/starrocks_fe_unittest_2/starrocks/fe/fe-core/target/* fe/fe-core
+          cp -rf temp/home/disk2/jenkins/workspace/starrocks_fe_unittest_2/starrocks/fe/fe-core/target/* fe/fe-core
 
       - name: Analyze FE
         env:
