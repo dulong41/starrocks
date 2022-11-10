@@ -31,7 +31,8 @@ import com.starrocks.catalog.PrimitiveType;
 import com.starrocks.common.AnalysisException;
 import com.starrocks.sql.ast.AstVisitor;
 import com.starrocks.thrift.TExprNode;
-import aaa
+import com.starrocks.thrift.TExprNode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
