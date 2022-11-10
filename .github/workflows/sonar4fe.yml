@@ -11,47 +11,47 @@ on:
   
 jobs:
   build:
-#    runs-on: ubuntu-latest
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+#    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
           
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'adopt'
+          
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+          
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven
+          
+      - name: Setup thrift
+        uses: dodopizza/setup-thrift@v1
+        with:
+          version: 0.13.0
+
       - name: set up
         run: |
           time scp jenkins@ci01:~/userContent/fe-ut-target-13122.tar.gz .
+          mkdir temp
           tar xzf fe-ut-target-13122.tar.gz -C temp
           workdir=$(pwd)
           echo $workdir
-          
-          
-#       - name: Set up JDK 11
-#         uses: actions/setup-java@v3
-#         with:
-#           java-version: 11
-#           distribution: 'adopt'
-          
-#       - name: Cache SonarCloud packages
-#         uses: actions/cache@v3
-#         with:
-#           path: ~/.sonar/cache
-#           key: ${{ runner.os }}-sonar
-#           restore-keys: ${{ runner.os }}-sonar
-          
-#       - name: Cache Maven packages
-#         uses: actions/cache@v3
-#         with:
-#           path: ~/.m2
-#           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-#           restore-keys: ${{ runner.os }}-maven
-          
-#      - name: Setup thrift
-#        uses: dodopizza/setup-thrift@v1
-#        with:
-#          version: 0.13.0
-
-
+          mkdir -p fe/fe-core/target
+          cp temp/home/disk2/jenkins/workspace/starrocks_fe_unittest_2/starrocks/fe/fe-core/target/* fe/fe-core
 
       - name: Analyze FE
         env:
@@ -63,6 +63,6 @@ jobs:
           export STARROCKS_HOME=${{ github.workspace }}
           source env.sh
           mkdir -p thirdparty/installed/bin/
-          cd thirdparty/installed/bin/ && ln -s /usr/bin/thrift thrift
+          cd thirdparty/installed/bin/ && ln -s /usr/local/bin/thrift thrift
           cd ${{ github.workspace }}/fe
           mvn -B -DskipTests verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=StarRocks_starrocks -Dsonar.pullrequest.key=${{ github.event.number }} -Dsonar.pullrequest.base=${{ github.base_ref }} -Dsonar.pullrequest.branch=${{ github.head_ref }}
