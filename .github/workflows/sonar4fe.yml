@@ -45,8 +45,8 @@ jobs:
 
 #           thrift --version
 #           whereis thrift
-#           export STARROCKS_HOME=${{ github.workspace }}
-          source env.sh
+# #           export STARROCKS_HOME=${{ github.workspace }}
+#           source env.sh
       - name: Analyze FE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
