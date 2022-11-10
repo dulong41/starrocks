@@ -43,15 +43,16 @@ jobs:
 #         with:
 #           version: 0.13.0
 
+#           thrift --version
+#           whereis thrift
+#           export STARROCKS_HOME=${{ github.workspace }}
+          source env.sh
       - name: Analyze FE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: 391d6539e2d09aed3d187353bfd85fefa7a4c281 # ${{ secrets.SONAR_TOKEN }}
         run: |
-          thrift --version
-          whereis thrift
-          export STARROCKS_HOME=${{ github.workspace }}
-          source env.sh
+
           mkdir -p thirdparty/installed/bin/
           cd thirdparty/installed/bin/ && ln -s /usr/bin/thrift thrift
           cd ${{ github.workspace }}/fe
