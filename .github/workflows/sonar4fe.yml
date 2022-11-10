@@ -47,15 +47,16 @@ jobs:
 #           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
 #           restore-keys: ${{ runner.os }}-maven
           
-      - name: Setup thrift
-        uses: dodopizza/setup-thrift@v1
-        with:
-          version: 0.13.0
+#      - name: Setup thrift
+#        uses: dodopizza/setup-thrift@v1
+#        with:
+#          version: 0.13.0
 
 #           thrift --version
 #           whereis thrift
 # #           export STARROCKS_HOME=${{ github.workspace }}
 #           source env.sh
+
       - name: Analyze FE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
