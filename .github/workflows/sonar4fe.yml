@@ -42,7 +42,9 @@ jobs:
         uses: dodopizza/setup-thrift@v1
         with:
           version: 0.13.0
+          
 # time scp jenkins@ci01:~/userContent/fe-ut-target-13122.tar.gz .
+
       - name: set up
         run: |
           
