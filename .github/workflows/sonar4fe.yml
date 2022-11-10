@@ -38,22 +38,21 @@ jobs:
 #           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
 #           restore-keys: ${{ runner.os }}-maven
           
-#       - name: Setup thrift
-#         uses: dodopizza/setup-thrift@v1
-#         with:
-#           version: 0.13.0
-
-#          thrift --version
-#           whereis thrift
-#           export STARROCKS_HOME=${{ github.workspace }}
-#           source env.sh
-#           mkdir -p thirdparty/installed/bin/
-#           cd thirdparty/installed/bin/ && ln -s /usr/local/bin/thrift thrift
+      - name: Setup thrift
+        uses: dodopizza/setup-thrift@v1
+        with:
+          version: 0.13.0
 
       - name: Analyze FE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: 391d6539e2d09aed3d187353bfd85fefa7a4c281 # ${{ secrets.SONAR_TOKEN }}
         run: |
+          thrift --version
+          whereis thrift
+          export STARROCKS_HOME=${{ github.workspace }}
+          source env.sh
+          mkdir -p thirdparty/installed/bin/
+          cd thirdparty/installed/bin/ && ln -s /usr/local/bin/thrift thrift
           cd ${{ github.workspace }}/fe
-          sudo mvn -B -DskipTests verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=StarRocks_starrocks -Dsonar.pullrequest.key=${{ github.event.number }} -Dsonar.pullrequest.base=${{ github.base_ref }} -Dsonar.pullrequest.branch=${{ github.head_ref }}
+          mvn -B -DskipTests verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=StarRocks_starrocks -Dsonar.pullrequest.key=${{ github.event.number }} -Dsonar.pullrequest.base=${{ github.base_ref }} -Dsonar.pullrequest.branch=${{ github.head_ref }}
