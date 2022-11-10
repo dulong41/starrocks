@@ -38,10 +38,10 @@ jobs:
 #           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
 #           restore-keys: ${{ runner.os }}-maven
           
-      - name: Setup thrift
-        uses: dodopizza/setup-thrift@v1
-        with:
-          version: 0.13.0
+#       - name: Setup thrift
+#         uses: dodopizza/setup-thrift@v1
+#         with:
+#           version: 0.13.0
 
       - name: Analyze FE
         env:
@@ -53,6 +53,6 @@ jobs:
           export STARROCKS_HOME=${{ github.workspace }}
           source env.sh
           mkdir -p thirdparty/installed/bin/
-          cd thirdparty/installed/bin/ && ln -s /usr/local/bin/thrift thrift
+          cd thirdparty/installed/bin/ && ln -s /usr/bin/thrift thrift
           cd ${{ github.workspace }}/fe
           mvn -B -DskipTests verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=StarRocks_starrocks -Dsonar.pullrequest.key=${{ github.event.number }} -Dsonar.pullrequest.base=${{ github.base_ref }} -Dsonar.pullrequest.branch=${{ github.head_ref }}
