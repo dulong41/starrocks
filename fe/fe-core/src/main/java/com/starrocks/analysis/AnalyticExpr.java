@@ -32,6 +32,7 @@ import com.starrocks.common.AnalysisException;
 import com.starrocks.sql.ast.AstVisitor;
 import com.starrocks.thrift.TExprNode;
 import com.starrocks.thrift.TExprNode;
+import com.starrocks.thrift.TExprNode;
 
 import java.util.ArrayList;
 import java.util.List;
