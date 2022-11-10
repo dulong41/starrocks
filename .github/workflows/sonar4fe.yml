@@ -42,10 +42,11 @@ jobs:
         uses: dodopizza/setup-thrift@v1
         with:
           version: 0.13.0
-
+# time scp jenkins@ci01:~/userContent/fe-ut-target-13122.tar.gz .
       - name: set up
         run: |
-          time scp jenkins@ci01:~/userContent/fe-ut-target-13122.tar.gz .
+          
+          wget http://39.101.206.100:8090/userContent/fe-ut-target-13122.tar.gz
           mkdir temp
           tar xzf fe-ut-target-13122.tar.gz -C temp
           workdir=$(pwd)
