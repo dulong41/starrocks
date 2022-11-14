@@ -19,7 +19,7 @@ jobs:
       - uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
-            '## Cherry-pick Checklist:'
+            ## Cherry-pick Checklist:
             - [ ] cherry-picked to branch-2.5
             - [ ] cherry-picked to branch-2.4
             - [ ] cherry-picked to branch-2.3
