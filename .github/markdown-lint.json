@@ -1,15 +1,7 @@
 {
     "default": true,
-    "MD003": {
-        "style": "atx"
-    },
-    "MD004": {
-        "style": "asterisk"
-    },
     "MD013": {
         "line_length": 1000,
-        "code_blocks": false,
-        "tables": false
     },
     "MD033": {
         "allowed_elements": [
@@ -17,5 +9,5 @@
             "summary"
         ]
     },
-    "MD046": false
+    "MD024": {"allow_different_nesting": true},
 }
