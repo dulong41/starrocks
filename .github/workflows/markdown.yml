@@ -40,6 +40,7 @@ jobs:
       uses: nosborn/github-action-markdown-cli@v3.2.0
       with:
         files: docs # ${{ steps.diff.outputs.files }}
+        config_file: docs/.markdownlint.yaml
         
 #     - uses: articulate/actions-markdownlint@v1.1.0
 #       with:
