@@ -45,7 +45,7 @@ jobs:
         
     - uses: articulate/actions-markdownlint@v1.1.0
       with:
-        config: ".github/markdown-lint.json"
+        config: "docs/.markdownlint.yaml"
         files: 'docs/**/*.md'
         ignore: node_modules
         version: 0.28.1
