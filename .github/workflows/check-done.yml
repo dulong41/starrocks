@@ -1,9 +1,6 @@
 name: comment
 
 on:
-  pull_request_target:
-    types:
-      - edited
   issue_comment:
     types: 
       - created
@@ -12,7 +9,7 @@ on:
 jobs:
   check-done:
     runs-on: ubuntu-latest
-    # if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.issue.pull_request }}
     env:
       PR_NUMBER: ${{ github.event.number }}
     steps:
