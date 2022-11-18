@@ -24,7 +24,6 @@ jobs:
           issue-number: $PR_NUMBER
           body-includes: "- [x] check done"
           direction: first
-          comment-author: github-actions
 
       - name: echo info
         if: steps.fc.outputs.comment-id != 0
