@@ -1,0 +1,61 @@
+name: backport
+
+on:
+  pull_request_target:
+    types:
+      - closed
+jobs:
+  backport:
+    runs-on: ubuntu-latest
+    if: >
+      startsWith(github.event.pull_request.title, '[BugFix]') &&
+      !contains(github.event.pull_request.title, 'cherry-pick') &&
+      !contains(github.event.pull_request.title, 'backport') &&
+      ${{ github.event.pull_request.merged == true }}
+    env:
+      PR_NUMBER: ${{ github.event.number }}
+    steps:
+      - name: find comment
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: $PR_NUMBER
+          body-includes: - [x] check done
+          direction: first
+
+      - name: check done
+        if: steps.fc.outputs.comment-id != 0
+        run: |
+          echo "You didn't finish check done."
+          exit 1
+      - name: backport branch-2.5
+        if: contains(github.event.pull_request.labels.*.name, '2.5')
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            @Mergifyio backport branch-2.5
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+
+      - name: backport branch-2.4
+        if: contains(github.event.pull_request.labels.*.name, '2.4')
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            @Mergifyio backport branch-2.4
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+
+      - name: backport branch-2.3
+        if: contains(github.event.pull_request.labels.*.name, '2.3')
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            @Mergifyio backport branch-2.3
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+
+      - name: backport branch-2.2
+        if: contains(github.event.pull_request.labels.*.name, '2.2')
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            @Mergifyio backport branch-2.2
+          GITHUB_TOKEN: ${{ secrets.PAT }}
