@@ -40,5 +40,5 @@ jobs:
       - name: echo info
         run: |
           echo ${{ steps.fc.outputs.comment-id }}
-          echo "You must finish check done"
-          exit 1
+          echo ${{ steps.fc.outputs.comment-body }}
+          echo ${{ steps.fc.outputs.comment-author }}
