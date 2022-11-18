@@ -38,7 +38,7 @@ jobs:
           body-includes: "- [x] check done"
 
       - name: echo info
-        if: steps.fc.outputs.comment-id != 0
         run: |
+          echo ${{ steps.fc.outputs.comment-id }}
           echo "You must finish check done"
           exit 1
