@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request }}
     env:
-      PR_NUMBER: ${{ github.event.number }}
+      PR_NUMBER: ${{ github.event.issue.pull_request.number }}
     steps:
       - name: find comment
         uses: peter-evans/find-comment@v2
