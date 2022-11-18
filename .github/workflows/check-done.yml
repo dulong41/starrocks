@@ -1,16 +1,16 @@
 name: comment
 
 on:
-  issue_comment:
+  pull_request:
     types:
       - edited
 
 jobs:
   check-done:
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request }}
+    # if: ${{ github.event.issue.pull_request }}
     env:
-      PR_NUMBER: ${{ github.event.issue.number }}
+      PR_NUMBER: ${{ github.event.number }}
     steps:
       - name: find comment
         uses: peter-evans/find-comment@v2
