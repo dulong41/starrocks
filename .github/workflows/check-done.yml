@@ -43,7 +43,7 @@ jobs:
         id: fcbp
         with:
           issue-number: ${{ github.event.number }}
-          body-includes: "pizza"
+          body-includes: "- [x] check done."
           
           
       - name: echo info
