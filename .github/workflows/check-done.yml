@@ -19,7 +19,7 @@ jobs:
         id: fc
         with:
           issue-number: $PR_NUMBER
-          body-includes: "- [x] check done"
+          body-includes: "[x] check done"
           direction: first
 
       - name: echo info
