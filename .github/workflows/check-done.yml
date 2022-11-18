@@ -4,6 +4,10 @@ on:
   pull_request_target:
     types:
       - edited
+  issue_comment:
+    types: 
+      - created
+      - edited
 
 jobs:
   check-done:
