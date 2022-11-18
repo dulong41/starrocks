@@ -9,7 +9,7 @@ on:
 jobs:
   check-done:
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request }} && contains(github.event.head_commit.message, 'I like pizza')
+    if: ${{ github.event.issue.pull_request }}
     steps:
 #       - name: Github API Request
 #         id: request
