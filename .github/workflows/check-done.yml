@@ -10,8 +10,6 @@ jobs:
   check-done:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request }}
-    env:
-      PR_NUMBER: ${{ github.event.issue.pull_request.number }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
