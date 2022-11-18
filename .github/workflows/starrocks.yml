@@ -4,6 +4,7 @@ name: Java unit test with run-fe-ut
 
 on: [push]
 
+
 env:
    STARROCKS_HOME: $GITHUB_WORKSPACE
 
