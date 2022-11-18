@@ -12,13 +12,10 @@ jobs:
     env:
       PR_NUMBER: ${{ github.event.number }}
     steps:
-      - uses: actions/checkout@v2
-      
       - name: find comment
         uses: peter-evans/find-comment@v2
         id: fc
         with:
-          issue-number: $PR_NUMBER
           body-includes: "check done"
           direction: first
 
