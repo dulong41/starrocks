@@ -1,0 +1,27 @@
+name: comment
+
+on:
+  issue_comment:
+    types:
+      - edited
+
+jobs:
+  check-done:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request }}
+    env:
+      PR_NUMBER: ${{ github.event.issue.number }}
+    steps:
+      - name: find comment
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: $PR_NUMBER
+          body-includes: - [x] check done
+          direction: first
+
+      - name: echo info
+        if: steps.fc.outputs.comment-id != 0
+        run: |
+          echo "You must finish check done"
+          exit 1
