@@ -39,6 +39,7 @@ jobs:
 
       - name: echo info
         run: |
+          echo ${{ steps.fc.outputs }}
           echo ${{ steps.fc.outputs.comment-id }}
           echo ${{ steps.fc.outputs.comment-body }}
           echo ${{ steps.fc.outputs.comment-author }}
