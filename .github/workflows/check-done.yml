@@ -35,7 +35,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ github.event.number }}
-          body-includes: "BugFix"
+          body-includes: "check done"
 
       - name: echo info
         if: steps.fc.outputs.comment-id != 0
