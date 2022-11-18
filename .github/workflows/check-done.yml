@@ -4,6 +4,9 @@ on:
   pull_request_target:
     types:
       - edited
+  issue_comment:
+    types:
+      - edited
 
 jobs:
   check-done:
@@ -19,7 +22,7 @@ jobs:
         id: fc
         with:
           issue-number: $PR_NUMBER
-          body-includes: - [x] check done
+          body-includes: "- [x] check done"
           direction: first
           comment-author: github-actions
 
