@@ -28,6 +28,8 @@ jobs:
 #           repository: ${{ fromJson(steps.request.outputs.data).head.repo.full_name }}
 #           ref: ${{ steps.pr_data.outputs.branch }}
       - run: echo "hello"
+      - uses: actions/checkout@v3
+      
       - name: find comment
         uses: peter-evans/find-comment@v2
         id: fc
