@@ -12,7 +12,8 @@ on:
     types:
       - opened
       - reopened
-      - 
+      - synchronize
+      
 
 jobs:
   cherrypick-check:
