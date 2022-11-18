@@ -34,8 +34,8 @@ jobs:
         uses: peter-evans/find-comment@v2
         id: fc
         with:
-          body-includes: "check done"
-          direction: first
+          issue-number: ${{ github.event.number }}
+          body-includes: "BugFix"
 
       - name: echo info
         if: steps.fc.outputs.comment-id != 0
