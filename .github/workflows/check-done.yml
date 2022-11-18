@@ -49,4 +49,3 @@ jobs:
         run: |
           echo ${{ steps.fcbp.outputs.comment-id }}
           echo ${{ steps.fcbp.outputs.comment-body }}
-          echo ${{ steps.fcbp.outputs.comment-author }}
