@@ -37,7 +37,17 @@ jobs:
           issue-number: ${{ github.event.number }}
           body-includes: "- [x] check done"
 
+
+      - name: find comment
+        uses: peter-evans/find-comment@v2
+        id: fcbp
+        with:
+          issue-number: ${{ github.event.number }}
+          body-includes: "pizza"
+          
+          
       - name: echo info
-        if: "contains(github.event.head_commit.message, 'check done')"
         run: |
-          echo "hello"
+          echo ${{ steps.fcbp.outputs.comment-id }}
+          echo ${{ steps.fcbp.outputs.comment-body }}
+          echo ${{ steps.fcbp.outputs.comment-author }}
