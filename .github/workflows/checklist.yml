@@ -10,9 +10,14 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+        
       - name: Dynamic checklist action
+        id: dynamic_checklist
         uses: vishalsinha21/dynamic-checklist@v1
         with:
           mappingFile: '.github/workflows/mapping.json'
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Print checklist
+        run: echo "The final checklist ${{ steps.dynamic_checklist.outputs.checklist }}"
