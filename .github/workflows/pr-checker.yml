@@ -21,4 +21,15 @@ jobs:
       - name : Print Title of PR
         run: |
           echo The Title of your PR is ${{ github.event.pull_request.title }}
-          echo ${{ github.event.comment.body }}
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: 13
+          body-includes: What type of PR is this
+          
+      - run: |
+         echo ${{ steps.fc.outputs.comment-id }}
+         echo ${{ steps.fc.outputs.comment-body }}
+         echo ${{ steps.fc.outputs.comment-author }}
