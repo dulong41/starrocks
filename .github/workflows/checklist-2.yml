@@ -11,4 +11,5 @@ jobs:
         uses: wyozi/contextual-qa-checklist-action@master
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
+          input-file: .github/workflows/CHECKLIST.yml
           # See options documentation below
