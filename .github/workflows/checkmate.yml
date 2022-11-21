@@ -6,11 +6,11 @@ name: Checklist Check
 jobs:
   checkmate:
     runs-on: ubuntu-latest
-    if: >
-      startsWith(github.event.pull_request.title, '[BugFix]') && 
-      !contains(github.event.pull_request.title, 'cherry-pick') && 
-      !contains(github.event.pull_request.title, 'backport')
     steps:
     - uses: actions/checkout@v3
     - name: Validate Checklists
+      if: >
+        startsWith(github.event.pull_request.title, '[BugFix]') && 
+        !contains(github.event.pull_request.title, 'cherry-pick') && 
+        !contains(github.event.pull_request.title, 'backport')
       uses: roryq/checkmate@master
