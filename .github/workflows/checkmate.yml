@@ -7,11 +7,30 @@ jobs:
   checkmate:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+      - uses: 8BitJonny/gh-get-current-pr@2.1.3
+        id: PR
+
+      - run: echo "PR ${prNumber} ${prTitle} at ${prUrl} is ${prJSON}"
+        if: steps.PR.outcome == 'success'
+        env:
+          # JSON object with the full PR object
+          # toJSON(fromJSON(...pr)) parses it into memory and then format is with pretty-print.
+          prJSON: ${{ toJSON(fromJSON(steps.current_pr.outputs.pr)) }}
+          # Direct access to common PR properties
+          prNumber: ${{ steps.PR.outputs.number }}
+          prUrl: ${{ steps.PR.outputs.pr_url }}
+          prTitle: ${{ steps.PR.outputs.pr_title }}
+          prBody: ${{ steps.PR.outputs.pr_body }}
+          prCreatedAt: ${{ steps.PR.outputs.pr_created_at }}
+          prMergedAt: ${{ steps.PR.outputs.pr_merged_at }}
+          prClosedAt: ${{ steps.PR.outputs.pr_closed_at }}
+          prLabel: ${{ steps.PR.outputs.pr_labels }}
+          
+#     - uses: actions/checkout@v3
     
-    - uses: kentaro-m/task-completed-checker-action@v0.1.0
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+#     - uses: kentaro-m/task-completed-checker-action@v0.1.0
+#       with:
+#         repo-token: "${{ secrets.GITHUB_TOKEN }}"
           
 #     - name: Validate Checklists
 #       if: >
