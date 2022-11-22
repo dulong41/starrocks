@@ -7,10 +7,18 @@ jobs:
   checkmate:
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub event
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github.event.pull_request.body) }}
-        run: echo "$GITHUB_CONTEXT"
+#       - name: Dump GitHub event
+#         env:
+#           GITHUB_CONTEXT: ${{ toJson(github.event.pull_request.body) }}
+#         run:
+
+      - name: feature
+        if: contains(toJson(github.event.pull_request.body), '[x] Feature')
+        run:
+          echo "feature"
+          
+        #   if [[ "\r\n- [x] Feature\r\n" == *"[x] Feature"* ]]; then    echo "ok"; fi
+        #echo "$GITHUB_CONTEXT"
           
 #     - uses: actions/checkout@v3
     
