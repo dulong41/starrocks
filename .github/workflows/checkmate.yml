@@ -1,5 +1,5 @@
 on:
-  pull_request:
+  pull_request_target:
     types: [edited, opened, reopened]
     
 name: Checklist Check
@@ -13,9 +13,9 @@ jobs:
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
           
-    - name: Validate Checklists
-      if: >
-        startsWith(github.event.pull_request.title, '[BugFix]') && 
-        !contains(github.event.pull_request.title, 'cherry-pick') && 
-        !contains(github.event.pull_request.title, 'backport')
-      uses: roryq/checkmate@master
+#     - name: Validate Checklists
+#       if: >
+#         startsWith(github.event.pull_request.title, '[BugFix]') && 
+#         !contains(github.event.pull_request.title, 'cherry-pick') && 
+#         !contains(github.event.pull_request.title, 'backport')
+#       uses: roryq/checkmate@master
