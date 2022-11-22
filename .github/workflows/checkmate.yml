@@ -8,6 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    
+    - uses: kentaro-m/task-completed-checker-action@v0.1.0
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          
     - name: Validate Checklists
       if: >
         startsWith(github.event.pull_request.title, '[BugFix]') && 
