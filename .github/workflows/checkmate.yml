@@ -15,7 +15,7 @@ jobs:
       - name: feature
         if: contains(toJson(github.event.pull_request.body), '[x] Feature')
         run:
-          echo "feature"
+          echo ${{ toJson(github.event) }}
           
         #   if [[ "\r\n- [x] Feature\r\n" == *"[x] Feature"* ]]; then    echo "ok"; fi
         #echo "$GITHUB_CONTEXT"
