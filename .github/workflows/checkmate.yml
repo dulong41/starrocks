@@ -21,6 +21,25 @@ jobs:
           echo "$GITHUB_CONTEXT1"
           echo "$GITHUB_CONTEXT2"
           
+      - name: add branch-2.5 label
+        if: >
+          contains(toJson(github.event.pull_request.body), '[x] 2.5') &&
+          contains(toJson(github.event.changes.body), '[ ] 2.5')
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: |
+            2.5
+      - name: add branch-2.4 label
+        if: >
+          contains(toJson(github.event.pull_request.body), '[x] 2.4') &&
+          contains(toJson(github.event.changes.body), '[ ] 2.4')
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: |
+            2.4
+            
       - name: check-done
         if: >
           contains(toJson(github.event.pull_request.body), '[ ] I have checked the version labels which the pr will be auto backported to target branch')
