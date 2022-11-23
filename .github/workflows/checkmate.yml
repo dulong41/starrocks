@@ -21,6 +21,13 @@ jobs:
           echo "$GITHUB_CONTEXT1"
           echo "$GITHUB_CONTEXT2"
           
+      - name: check-done
+        if: >
+          contains(toJson(github.event.pull_request.body), '[ ] I have checked the version labels which the pr will be auto backported to target branch')
+        run: |
+          echo "You must mark this checkbox - I have checked the version labels which the pr will be auto backported to target branch"
+          exit 1
+          
         #   if [[ "\r\n- [x] Feature\r\n" == *"[x] Feature"* ]]; then    echo "ok"; fi
         #echo "$GITHUB_CONTEXT"
           
