@@ -18,7 +18,7 @@ jobs:
           !contains(github.event.pull_request.title, 'cherry-pick') && 
           !contains(github.event.pull_request.title, 'backport')
         with:
-          github_token: ${{ secrets.PAT }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: |
             2.5
             2.4
