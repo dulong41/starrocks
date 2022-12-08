@@ -17,6 +17,7 @@ jobs:
         run: |
             number=$(echo -e ${{ toJson(github.event.pull_request.body) }} | grep 'Fixes 11' | cut -d ' ' -f 2)
             echo "result=$number" >> $GITHUB_OUTPUT
+            echo $number
 
       - name: echo result
         run: echo ${{ steps.issue.outputs.result }}
