@@ -12,7 +12,7 @@ jobs:
 #           GITHUB_CONTEXT: ${{ toJson(github.event.pull_request.body) }}
 #         run:
       - name: get issue number
-        if: contains(toJson(github.event.pull_request.body), 'Fixes #')
+        if: contains(toJson(github.event.pull_request.body), 'Fixes ')
         id: issue
         run: |
             echo ${{ toJson(github.event.pull_request.body) }} | grep 'Fixes \#' | cut -d ' ' -f 2 
