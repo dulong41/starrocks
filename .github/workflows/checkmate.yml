@@ -15,11 +15,11 @@ jobs:
         if: contains(toJson(github.event.pull_request.body), 'Fixes ')
         id: issue
         run: |
-            echo -e ${{ toJson(github.event.pull_request.body) }} | grep 'Fixes #11' | cut -d ' ' -f 2 
+            echo -e ${{ toJson(github.event.pull_request.body) }} | grep 'Fixes #11' | cut -d ' ' -f 2 | >> $GITHUB_OUTPUT
 
-#       - name: echo result
-#         if: steps.issue.outputs.result != ''
-#         run: echo ${{ steps.issue.outputs.result }}
+      - name: echo result
+        if: steps.issue.outputs.result != ''
+        run: echo ${{ steps.issue.outputs.result }}
 
       - name: feature
 #         if: contains(toJson(github.event.pull_request.body), '[x] Feature')
