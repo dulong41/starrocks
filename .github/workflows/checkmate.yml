@@ -11,6 +11,15 @@ jobs:
 #         env:
 #           GITHUB_CONTEXT: ${{ toJson(github.event.pull_request.body) }}
 #         run:
+      - name: get issue number
+        if: contains(toJson(github.event.pull_request.body), 'Fixes https://github.com/')
+        id: issue
+        run: |
+            echo '${{ toJson(github.event.pull_request.body) }}' | grep 'Fixes https://github.com' | cut -d ' ' -f 2 >> $GITHUB_OUTPUT
+
+      - name: echo result
+        if: steps.issue.outputs.result != ''
+        run: echo ${{ steps.issue.outputs.result }}
 
       - name: feature
 #         if: contains(toJson(github.event.pull_request.body), '[x] Feature')
