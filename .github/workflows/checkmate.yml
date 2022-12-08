@@ -19,7 +19,6 @@ jobs:
             echo "result=$number" >> $GITHUB_OUTPUT
 
       - name: echo result
-        if: steps.issue.outputs.result != ''
         run: echo ${{ steps.issue.outputs.result }}
 
       - name: feature
