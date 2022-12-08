@@ -16,7 +16,7 @@ jobs:
         id: issue
         run: |
             number=$(echo -e ${{ toJson(github.event.pull_request.body) }} | grep 'Fixes 11' | cut -d ' ' -f 2)
-            echo $number >> $GITHUB_OUTPUT
+            echo "result=$number" >> $GITHUB_OUTPUT
 
       - name: echo result
         if: steps.issue.outputs.result != ''
