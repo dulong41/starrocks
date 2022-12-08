@@ -15,7 +15,8 @@ jobs:
         if: contains(toJson(github.event.pull_request.body), 'Fixes ')
         id: issue
         run: |
-            echo -e ${{ toJson(github.event.pull_request.body) }} | grep 'Fixes #11' | cut -d ' ' -f 2 | >> $GITHUB_OUTPUT
+            number = $(echo -e ${{ toJson(github.event.pull_request.body) }} | grep 'Fixes #11' | cut -d ' ' -f 2)
+            echo $number >> $GITHUB_OUTPUT
 
       - name: echo result
         if: steps.issue.outputs.result != ''
