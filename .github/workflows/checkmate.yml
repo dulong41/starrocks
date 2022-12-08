@@ -18,8 +18,9 @@ jobs:
           GITHUB_CONTEXT1: ${{ toJson(github.event.changes.body) }}
           GITHUB_CONTEXT2: ${{ toJson(github.event.pull_request.body) }}
         run: |
-          echo "$GITHUB_CONTEXT1"
-          echo "$GITHUB_CONTEXT2"
+          echo ${{ toJson(github.event.pull_request.body) }}
+#echo "$GITHUB_CONTEXT1"
+#          echo "$GITHUB_CONTEXT2"
           
       - name: add branch-2.5 label
         if: >
