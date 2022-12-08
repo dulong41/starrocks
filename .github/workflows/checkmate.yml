@@ -21,6 +21,7 @@ jobs:
 
 
       - name: echo result
+        if: steps.issue.outputs.result != ''
         run: echo ${{ steps.issue.outputs.result }}
 
       - name: feature
