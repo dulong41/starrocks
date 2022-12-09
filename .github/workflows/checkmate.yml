@@ -11,7 +11,17 @@ jobs:
 #         env:
 #           GITHUB_CONTEXT: ${{ toJson(github.event.pull_request.body) }}
 #         run:
-      - run: echo ${{ toJson(github.event) }}
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{github.event.after}}
+          
+      - name: Get Commit Message
+        run: |
+          MSG=$(git log --format=%B -n 1 ${{github.event.after}})
+          echo $MSG
+        
       
       - name: get issue number
         if: contains(toJson(github.event.pull_request.body), 'Fixes ')
